@@ -1,0 +1,36 @@
+{
+  "name": "@repo/api",
+  "version": "0.0.0",
+  "type": "module",
+  "license": "UNLICENSED",
+  "main": "./src/index.ts",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "dev": "dotenv -- nodemon dist/index.cjs",
+    "build": "node ./esbuild.config.js",
+    "build:watch": "WATCH_MODE=true npm run build",
+    "type-check": "tsc",
+    "lint": "eslint 'src/**/*.ts'",
+    "format": "prettier --write \"src/**/*.ts\" --log-level warn"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.x.x",
+    "dotenv-cli": "^11.0.0",
+    "esbuild": "^0.27.3",
+    "globals": "^17.3.0",
+    "nodemon": "^3.1.10",
+    "typescript": "5.9.3"
+  },
+  "dependencies": {
+    "@repo/utils": "*",
+    "cors": "^2.8.5",
+    "esbuild-plugin-noexternal": "^0.1.6",
+    "express": "^5.2.1"
+  }
+}
