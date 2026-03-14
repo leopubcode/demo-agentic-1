@@ -28,8 +28,9 @@
     "typescript": "5.9.3"
   },
   "dependencies": {
+    "@repo/core": "*",
     "@repo/utils": "*",
-    "cors": "^2.8.5",
+    "cors": "^2.8.6",
     "esbuild-plugin-noexternal": "^0.1.6",
     "express": "^5.2.1"
   }

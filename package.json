@@ -1,5 +1,5 @@
 {
-  "name": "driving-school",
+  "name": "react-ts-tailwind-trpc",
   "private": true,
   "scripts": {
     "build": "turbo run build",
