@@ -20,5 +20,8 @@ async function run() {
   }
 }
 
-run().catch(() => process.exit(1));
+run().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
 // "build": "esbuild ./src/index.ts --bundle --platform=node --packages=external --outfile=dist/index.cjs --target=node20",
