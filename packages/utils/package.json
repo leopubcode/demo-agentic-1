@@ -30,9 +30,9 @@
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
     "dotenv-cli": "^11.0.0",
-    "esbuild": "^0.27.3",
-    "nodemon": "^3.1.10",
-    "typescript": "5.9.3",
+    "esbuild": "^0.28.2",
+    "nodemon": "^3.1.14",
+    "typescript": "6.0.3",
     "vitest": "^5.0.3"
   }
 }
