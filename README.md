@@ -18,52 +18,18 @@ If you want to build something that can scale but without being vendor locked-in
 
 - Docker Node.js API runtime -> Postgres (supabase) -> Sidequest (Postgres) worker -> S3 storage -> ECS infrastructure -> keycloak auth -> OpenBao
 
-### APIs:
+## Pieces
 
-- tRPC (default)
-- Apollo Server
+This is a record of the tools, machanism, or technologies that are used in this template. If you end up building your own template consider the following list:
 
-### API Runtimes:
-
-- Docker Node.js
-- Lambda
-
-### Databases:
-
-- SQLite
-- Postgres
-- DynamoDB
-- MongoDB
-- Redis
-
-### Workers:
-
-- Sidequest
-- SQS + Lambda
-- SQS + Docker Node.js
-- BullMQ + Docker Node.js
-
-### Storage:
-
-- S3
-- Local files
-
-### Infrastructure:
-
-- Fly.io
-- ECS
-
-### Auth:
-
-- Keycloak
-- AWS Cognito
-- Auth0
-
-### Secret management:
-
-- OpenBao
-- AWS Secret Manager
-- .env
+- ESLint + Prettier
+- husky + lint staged
+- local env with docker compose
+- unit + integration testing over e2e testing
+- prod builds + dockerfiles
+- IaC: AWS CDK + Terraform
+- DB migrations + preview DB envs
+- Observability
 
 ## Getting started
 
