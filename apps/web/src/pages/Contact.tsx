@@ -13,6 +13,15 @@ export function Contact() {
           hello@example.com
         </a>
       </p>
+      <p className="mt-4 text-slate-600 dark:text-slate-400">
+        Call us at{" "}
+        <a
+          href="tel:5555555555"
+          className="font-medium underline hover:text-slate-900 dark:hover:text-slate-100"
+        >
+          5555555555
+        </a>
+      </p>
     </div>
   );
 }
