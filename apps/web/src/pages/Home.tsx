@@ -11,51 +11,61 @@ const features = [
   },
   {
     title: "Light matching",
-    body: "Tell us which window you have and we'll suggest plants that will thrive.",
+    body: "Tell us where you bought the window and we will take care of the rest.",
   },
 ];
 
+const bevelButton =
+  "border-4 border-t-white border-l-white border-b-gray-600 border-r-gray-600 bg-gray-300 px-5 py-2 font-bold text-black underline hover:bg-yellow-200";
+
 export function Home() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-16">
-      <section className="text-center">
-        <h1 className="text-5xl font-bold text-slate-800 dark:text-slate-100">
-          Leafy
-        </h1>
-        <p className="mt-4 text-xl text-slate-600 dark:text-slate-400">
-          Keep your houseplants happy, without the guesswork.
-        </p>
-        <div className="mt-8 flex justify-center gap-4">
-          <Link
-            to="/signup"
-            className="rounded-md bg-emerald-600 px-5 py-2.5 font-medium text-white hover:bg-emerald-700"
-          >
-            Get started
-          </Link>
-          <Link
-            to="/about"
-            className="rounded-md border border-slate-300 dark:border-slate-600 px-5 py-2.5 font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
-          >
-            Learn more
-          </Link>
-        </div>
-      </section>
-
-      <section className="mt-16 grid gap-6 sm:grid-cols-3">
-        {features.map((feature) => (
-          <div
-            key={feature.title}
-            className="rounded-lg border border-slate-200 dark:border-slate-700 p-5"
-          >
-            <h2 className="font-semibold text-slate-800 dark:text-slate-100">
-              {feature.title}
-            </h2>
-            <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
-              {feature.body}
-            </p>
+    <div
+      className="min-h-screen bg-fuchsia-700 px-4 py-10 text-black"
+      style={{ fontFamily: '"Comic Sans MS", "Comic Sans", cursive' }}
+    >
+      <div className="mx-auto max-w-3xl border-8 border-double border-yellow-300 bg-lime-200 p-6">
+        <section className="text-center">
+          <h1 className="text-6xl font-bold text-fuchsia-700 [text-shadow:3px_3px_0_#fde047]">
+            Leafy
+          </h1>
+          <p className="mt-2 text-xl font-bold text-blue-800">
+            ~*~ Keep your houseplants happy, without the guesswork! ~*~
+          </p>
+          <p className="mt-4 bg-black px-2 py-1 font-mono text-sm text-lime-400">
+            *** UNDER CONSTRUCTION ***
+          </p>
+          <div className="mt-6 flex justify-center gap-4">
+            <Link to="/signup" className={bevelButton}>
+              Get started
+            </Link>
+            <Link to="/about" className={bevelButton}>
+              Learn more
+            </Link>
           </div>
-        ))}
-      </section>
+        </section>
+
+        <hr className="my-8 border-t-4 border-dashed border-fuchsia-700" />
+
+        <section className="grid gap-4 sm:grid-cols-3">
+          {features.map((feature) => (
+            <div
+              key={feature.title}
+              className="border-4 border-t-white border-l-white border-b-gray-600 border-r-gray-600 bg-yellow-100 p-4"
+            >
+              <h2 className="font-bold text-red-600 underline">
+                {feature.title}
+              </h2>
+              <p className="mt-2 text-sm">{feature.body}</p>
+            </div>
+          ))}
+        </section>
+
+        <p className="mt-8 text-center text-sm">
+          You are visitor number{" "}
+          <span className="bg-black px-1 font-mono text-lime-400">001337</span>
+        </p>
+      </div>
     </div>
   );
 }
