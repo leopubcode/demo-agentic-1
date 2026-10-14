@@ -11,6 +11,7 @@ import { createAppTRPCClient } from "./trpcClient";
 import { Test } from "./Test";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
+import { Contact } from "./pages/Contact";
 import { Account } from "./pages/Account";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
@@ -89,6 +90,12 @@ function Nav() {
           About
         </Link>
         <Link
+          to="/contact"
+          className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 font-medium"
+        >
+          Contact
+        </Link>
+        <Link
           to="/upload"
           className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 font-medium"
         >
@@ -128,6 +135,7 @@ export function App() {
                   }
                 />
                 <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
                 <Route path="/upload" element={<Upload />} />
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/signup" element={<SignUp />} />
