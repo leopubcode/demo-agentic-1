@@ -32,9 +32,6 @@ export function Home() {
           <p className="mt-2 text-xl font-bold text-blue-800">
             ~*~ Keep your houseplants happy, without the guesswork! ~*~
           </p>
-          <p className="mt-4 bg-black px-2 py-1 font-mono text-sm text-lime-400">
-            *** UNDER CONSTRUCTION ***
-          </p>
           <div className="mt-6 flex justify-center gap-4">
             <Link to="/signup" className={bevelButton}>
               Get started
