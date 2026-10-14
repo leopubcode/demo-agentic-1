@@ -7,6 +7,7 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
+import { useI18n } from "../i18n/useI18n";
 import {
   AuthForm,
   errorCode,
@@ -18,6 +19,7 @@ import {
 
 export function SignIn() {
   const { signIn } = useAuth();
+  const { t } = useI18n();
   const navigate = useNavigate();
   const location = useLocation();
   const [params] = useSearchParams();
@@ -40,19 +42,19 @@ export function SignIn() {
         navigate(`/verify-email?email=${encodeURIComponent(email)}`);
         return;
       }
-      setError(errorMessage(caught));
+      setError(errorMessage(caught, t("auth.genericError")));
     } finally {
       setPending(false);
     }
   };
 
   return (
-    <AuthForm title="Sign in" onSubmit={submit}>
+    <AuthForm title={t("signIn.title")} onSubmit={submit}>
       <FormMessage tone="info">
-        {params.get("verified") && "Your email is verified. Sign in below."}
+        {params.get("verified") && t("signIn.verified")}
       </FormMessage>
       <Field
-        label="Email"
+        label={t("auth.email")}
         name="email"
         type="email"
         autoComplete="email"
@@ -60,18 +62,18 @@ export function SignIn() {
         required
       />
       <Field
-        label="Password"
+        label={t("auth.password")}
         name="password"
         type="password"
         autoComplete="current-password"
         required
       />
       <FormMessage tone="error">{error}</FormMessage>
-      <SubmitButton pending={pending}>Sign in</SubmitButton>
+      <SubmitButton pending={pending}>{t("signIn.submit")}</SubmitButton>
       <p className="text-sm text-slate-600 dark:text-slate-400">
-        No account?{" "}
+        {t("signIn.noAccount")}{" "}
         <Link to="/signup" className="underline">
-          Sign up
+          {t("signIn.signUpLink")}
         </Link>
       </p>
     </AuthForm>

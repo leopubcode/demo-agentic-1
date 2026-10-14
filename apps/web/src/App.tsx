@@ -6,6 +6,9 @@ import { AuthProvider } from "./auth/AuthProvider";
 import { RequireAuth } from "./auth/RequireAuth";
 import { tokenStore } from "./auth/tokenStore";
 import { useAuth } from "./auth/useAuth";
+import { I18nProvider } from "./i18n/I18nProvider";
+import { LanguagePicker } from "./i18n/LanguagePicker";
+import { useI18n } from "./i18n/useI18n";
 import { TRPCProvider } from "./trpc";
 import { createAppTRPCClient } from "./trpcClient";
 import { Test } from "./Test";
@@ -44,6 +47,7 @@ const navLink =
 
 function AuthNav() {
   const { status, user, signOut } = useAuth();
+  const { t } = useI18n();
 
   if (status === "loading") {
     return null;
@@ -52,10 +56,10 @@ function AuthNav() {
     return (
       <>
         <Link to="/signin" className={navLink}>
-          Sign in
+          {t("nav.signIn")}
         </Link>
         <Link to="/signup" className={navLink}>
-          Sign up
+          {t("nav.signUp")}
         </Link>
       </>
     );
@@ -66,13 +70,15 @@ function AuthNav() {
         {user!.email}
       </Link>
       <button type="button" onClick={signOut} className={navLink}>
-        Sign out
+        {t("nav.signOut")}
       </button>
     </>
   );
 }
 
 function Nav() {
+  const { t } = useI18n();
+
   return (
     <nav className="border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
       <div className="max-w-4xl mx-auto px-4 flex gap-6 py-3">
@@ -80,21 +86,22 @@ function Nav() {
           to="/"
           className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 font-medium"
         >
-          Home
+          {t("nav.home")}
         </Link>
         <Link
           to="/about"
           className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 font-medium"
         >
-          About
+          {t("nav.about")}
         </Link>
         <Link
           to="/upload"
           className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 font-medium"
         >
-          Upload
+          {t("nav.upload")}
         </Link>
-        <div className="ml-auto flex gap-6">
+        <div className="ml-auto flex items-center gap-6">
+          <LanguagePicker />
           <AuthNav />
         </div>
       </div>
@@ -112,37 +119,39 @@ export function App() {
     <QueryClientProvider client={queryClient}>
       <TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
         <AuthProvider tokens={tokenStore}>
-          <BrowserRouter>
-            <Nav />
-            <main>
-              <Routes>
-                <Route
-                  path="/"
-                  element={
-                    <>
-                      <Home />
-                      <div className="max-w-2xl mx-auto px-4 pb-12">
-                        <Test />
-                      </div>
-                    </>
-                  }
-                />
-                <Route path="/about" element={<About />} />
-                <Route path="/upload" element={<Upload />} />
-                <Route path="/signin" element={<SignIn />} />
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="/verify-email" element={<VerifyEmail />} />
-                <Route
-                  path="/account"
-                  element={
-                    <RequireAuth>
-                      <Account />
-                    </RequireAuth>
-                  }
-                />
-              </Routes>
-            </main>
-          </BrowserRouter>
+          <I18nProvider>
+            <BrowserRouter>
+              <Nav />
+              <main>
+                <Routes>
+                  <Route
+                    path="/"
+                    element={
+                      <>
+                        <Home />
+                        <div className="max-w-2xl mx-auto px-4 pb-12">
+                          <Test />
+                        </div>
+                      </>
+                    }
+                  />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/upload" element={<Upload />} />
+                  <Route path="/signin" element={<SignIn />} />
+                  <Route path="/signup" element={<SignUp />} />
+                  <Route path="/verify-email" element={<VerifyEmail />} />
+                  <Route
+                    path="/account"
+                    element={
+                      <RequireAuth>
+                        <Account />
+                      </RequireAuth>
+                    }
+                  />
+                </Routes>
+              </main>
+            </BrowserRouter>
+          </I18nProvider>
         </AuthProvider>
       </TRPCProvider>
     </QueryClientProvider>
