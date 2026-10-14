@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
+import { useI18n } from "../i18n/useI18n";
 import {
   AuthForm,
   errorMessage,
@@ -11,6 +12,7 @@ import {
 
 export function SignUp() {
   const { signUp } = useAuth();
+  const { t } = useI18n();
   const navigate = useNavigate();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string>();
@@ -26,24 +28,29 @@ export function SignUp() {
       });
       navigate(`/verify-email?email=${encodeURIComponent(email)}`);
     } catch (caught) {
-      setError(errorMessage(caught));
+      setError(errorMessage(caught, t("auth.genericError")));
     } finally {
       setPending(false);
     }
   };
 
   return (
-    <AuthForm title="Sign up" onSubmit={submit}>
-      <Field label="Name" name="displayName" autoComplete="name" required />
+    <AuthForm title={t("signUp.title")} onSubmit={submit}>
       <Field
-        label="Email"
+        label={t("auth.name")}
+        name="displayName"
+        autoComplete="name"
+        required
+      />
+      <Field
+        label={t("auth.email")}
         name="email"
         type="email"
         autoComplete="email"
         required
       />
       <Field
-        label="Password"
+        label={t("auth.password")}
         name="password"
         type="password"
         autoComplete="new-password"
@@ -51,11 +58,11 @@ export function SignUp() {
         required
       />
       <FormMessage tone="error">{error}</FormMessage>
-      <SubmitButton pending={pending}>Sign up</SubmitButton>
+      <SubmitButton pending={pending}>{t("signUp.submit")}</SubmitButton>
       <p className="text-sm text-slate-600 dark:text-slate-400">
-        Already have an account?{" "}
+        {t("signUp.haveAccount")}{" "}
         <Link to="/signin" className="underline">
-          Sign in
+          {t("signUp.signInLink")}
         </Link>
       </p>
     </AuthForm>

@@ -93,9 +93,10 @@ export function errorCode(error: unknown): string | undefined {
     : undefined;
 }
 
-export function errorMessage(error: unknown): string {
+// `fallback` is the translated generic message for unexpected failures.
+export function errorMessage(error: unknown, fallback: string): string {
   return error instanceof TRPCClientError &&
     errorCode(error) !== "INTERNAL_SERVER_ERROR"
     ? error.message
-    : "Something went wrong. Please try again.";
+    : fallback;
 }
