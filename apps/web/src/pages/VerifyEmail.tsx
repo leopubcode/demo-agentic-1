@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
+import { useI18n } from "../i18n/useI18n";
 import {
   AuthForm,
   errorMessage,
@@ -13,6 +14,7 @@ import {
 // account. The link lands on the sign-in page once the email is verified.
 export function VerifyEmail() {
   const { resendVerification } = useAuth();
+  const { t } = useI18n();
   const [params] = useSearchParams();
   const [email, setEmail] = useState(params.get("email") ?? "");
   const [pending, setPending] = useState(false);
@@ -24,22 +26,19 @@ export function VerifyEmail() {
     setError(undefined);
     try {
       await resendVerification({ email });
-      setNotice(`If ${email} still needs verifying, we sent it a new link.`);
+      setNotice(t("verify.resent", { email }));
     } catch (caught) {
-      setError(errorMessage(caught));
+      setError(errorMessage(caught, t("auth.genericError")));
     } finally {
       setPending(false);
     }
   };
 
   return (
-    <AuthForm title="Verify your email" onSubmit={resend}>
-      <FormMessage tone="info">
-        {notice ??
-          "We emailed you a link. Follow it to verify your email, then sign in."}
-      </FormMessage>
+    <AuthForm title={t("verify.title")} onSubmit={resend}>
+      <FormMessage tone="info">{notice ?? t("verify.emailed")}</FormMessage>
       <Field
-        label="Email"
+        label={t("auth.email")}
         name="email"
         type="email"
         autoComplete="email"
@@ -48,14 +47,14 @@ export function VerifyEmail() {
         required
       />
       <FormMessage tone="error">{error}</FormMessage>
-      <SubmitButton pending={pending}>Send a new link</SubmitButton>
+      <SubmitButton pending={pending}>{t("verify.submit")}</SubmitButton>
       <p className="text-sm text-slate-600 dark:text-slate-400">
-        Already verified?{" "}
+        {t("verify.alreadyVerified")}{" "}
         <Link
           to={`/signin?email=${encodeURIComponent(email)}`}
           className="underline"
         >
-          Sign in
+          {t("verify.signInLink")}
         </Link>
       </p>
     </AuthForm>
