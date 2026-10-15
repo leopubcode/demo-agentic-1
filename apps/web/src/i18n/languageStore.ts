@@ -6,9 +6,11 @@ export function isLanguage(value: unknown): value is Language {
   return LANGUAGES.includes(value as Language);
 }
 
-// es, es-MX, ... -> Spanish; anything else -> English.
+// es, es-MX, fr-CA, ... -> that language's base code if supported;
+// anything else -> English.
 export function detectLanguage(browserLanguage: string | undefined): Language {
-  return browserLanguage?.toLowerCase().startsWith("es") ? "es" : "en";
+  const base = browserLanguage?.toLowerCase().split("-")[0];
+  return isLanguage(base) ? base : "en";
 }
 
 function readStored(): Language | undefined {

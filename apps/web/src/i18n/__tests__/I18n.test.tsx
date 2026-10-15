@@ -48,5 +48,14 @@ describe("rendering", () => {
       screen.getByRole("heading", { name: "Acerca de" }),
     ).toBeInTheDocument();
     expect(document.documentElement.lang).toBe("es");
+
+    fireEvent.change(screen.getByRole("combobox", { name: "Idioma" }), {
+      target: { value: "fr" },
+    });
+
+    expect(
+      screen.getByRole("heading", { name: "À propos" }),
+    ).toBeInTheDocument();
+    expect(document.documentElement.lang).toBe("fr");
   });
 });

@@ -1,9 +1,10 @@
-export const LANGUAGES = ["en", "es"] as const;
+export const LANGUAGES = ["en", "es", "fr"] as const;
 export type Language = (typeof LANGUAGES)[number];
 
 export const LANGUAGE_NAMES: Record<Language, string> = {
   en: "English",
   es: "Español",
+  fr: "Français",
 };
 
 const en = {
@@ -154,9 +155,84 @@ const es: Record<TranslationKey, string> = {
   "upload.empty": "Aún no se han subido imágenes.",
 };
 
+const fr: Record<TranslationKey, string> = {
+  "nav.home": "Accueil",
+  "nav.about": "À propos",
+  "nav.contact": "Contact",
+  "nav.upload": "Téléverser",
+  "nav.signIn": "Se connecter",
+  "nav.signUp": "S’inscrire",
+  "nav.signOut": "Se déconnecter",
+  "nav.language": "Langue",
+
+  "home.title": "Leafy",
+  "home.tagline":
+    "~*~ Gardez vos plantes d’intérieur heureuses, sans deviner ! ~*~",
+  "home.getStarted": "Commencer",
+  "home.learnMore": "En savoir plus",
+  "home.feature.water.title": "Rappels d’arrosage",
+  "home.feature.water.body":
+    "Sachez exactement quand chaque plante a soif, selon son espèce et votre intérieur.",
+  "home.feature.photo.title": "Journal photo",
+  "home.feature.photo.body":
+    "Ajoutez une photo chaque semaine et regardez vos plantes grandir au fil du temps.",
+  "home.feature.light.title": "Lumière idéale",
+  "home.feature.light.body":
+    "Dites-nous où vous avez acheté la fenêtre et nous nous occupons du reste.",
+  "home.visitor": "Vous êtes le visiteur numéro",
+
+  "contact.title": "Contact",
+  "contact.email": "Écrivez-nous à",
+  "contact.phone": "Appelez-nous au",
+
+  "about.title": "À propos",
+  "about.body":
+    "Ceci est la page à propos. Vous pouvez ajouter d’autres pages et routes d’exemple selon vos besoins.",
+
+  "account.title": "Compte",
+  "account.name": "Nom",
+  "account.email": "E-mail",
+
+  "auth.email": "E-mail",
+  "auth.password": "Mot de passe",
+  "auth.name": "Nom",
+  "auth.genericError": "Une erreur s’est produite. Veuillez réessayer.",
+
+  "signIn.title": "Se connecter",
+  "signIn.verified": "Votre e-mail est vérifié. Connectez-vous ci-dessous.",
+  "signIn.submit": "Se connecter",
+  "signIn.noAccount": "Pas de compte ?",
+  "signIn.signUpLink": "Inscrivez-vous",
+
+  "signUp.title": "S’inscrire",
+  "signUp.submit": "S’inscrire",
+  "signUp.haveAccount": "Vous avez déjà un compte ?",
+  "signUp.signInLink": "Connectez-vous",
+
+  "verify.title": "Vérifiez votre e-mail",
+  "verify.emailed":
+    "Nous vous avons envoyé un lien par e-mail. Suivez-le pour vérifier votre e-mail, puis connectez-vous.",
+  "verify.resent":
+    "Si {email} doit encore être vérifié, nous lui avons envoyé un nouveau lien.",
+  "verify.submit": "Envoyer un nouveau lien",
+  "verify.alreadyVerified": "Déjà vérifié ?",
+  "verify.signInLink": "Connectez-vous",
+
+  "upload.title": "Téléverser une image",
+  "upload.submit": "Téléverser",
+  "upload.uploading": "Téléversement…",
+  "upload.selectedAlt": "Image sélectionnée",
+  "upload.failed": "Échec du téléversement ({status})",
+  "upload.uploadedAs": "Téléversée sous le nom",
+  "upload.listTitle": "Images téléversées",
+  "upload.loading": "Chargement…",
+  "upload.empty": "Aucune image téléversée pour l’instant.",
+};
+
 export const translations: Record<Language, Record<TranslationKey, string>> = {
   en,
   es,
+  fr,
 };
 
 export type TranslateParams = Record<string, string | number>;

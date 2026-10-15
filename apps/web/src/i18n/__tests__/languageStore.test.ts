@@ -8,9 +8,16 @@ describe("detectLanguage", () => {
     expect(detectLanguage("ES-ar")).toBe("es");
   });
 
+  it("maps French locales to fr", () => {
+    expect(detectLanguage("fr")).toBe("fr");
+    expect(detectLanguage("fr-CA")).toBe("fr");
+    expect(detectLanguage("FR-be")).toBe("fr");
+  });
+
   it("falls back to English", () => {
     expect(detectLanguage("en-US")).toBe("en");
-    expect(detectLanguage("fr")).toBe("en");
+    expect(detectLanguage("de-DE")).toBe("en");
+    expect(detectLanguage("esperanto")).toBe("en");
     expect(detectLanguage(undefined)).toBe("en");
   });
 });
